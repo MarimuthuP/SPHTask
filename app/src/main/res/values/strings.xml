@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SPHTask</string>
+
+    <string name="title">Mobile Data Usage</string>
+    <string name="report">Click here to see Report!</string>
+
+    <string name="year">Year</string>
+    <string name="number">2019</string>
+    <string name="consumption">Total volume</string>
+</resources>
