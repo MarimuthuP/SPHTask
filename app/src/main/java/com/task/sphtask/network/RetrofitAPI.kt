@@ -1,6 +1,6 @@
 package com.task.sphtask.network
 
-import com.task.sphtask.pojo.DataUsagePojo
+import com.google.gson.JsonElement
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -9,5 +9,5 @@ import retrofit2.http.GET
  */
 interface RetrofitAPI {
     @GET(WebUrls.GET_LIMIT)
-    fun getDataUsage(): Call<DataUsagePojo>
+    fun getDataUsage(): Call<JsonElement>
 }
