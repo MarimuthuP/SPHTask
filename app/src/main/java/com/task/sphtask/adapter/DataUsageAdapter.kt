@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.task.sphtask.R
@@ -36,22 +37,26 @@ class DataUsageAdapter(
         var usageTotal: TextView? = null
 
         init {
-            imageViewLogo = row.findViewById(R.id.iv_note_pic)
-            usageYear = row.findViewById(R.id.tv_note_title)
-            usageTotal = row.findViewById(R.id.tv_note_content)
+            imageViewLogo = row.findViewById(R.id.iv_down_quarter)
+            usageYear = row.findViewById(R.id.tv_year)
+            usageTotal = row.findViewById(R.id.tv_total_usage)
         }
 
         fun bindDataUsage(
-            dataUsageDetails: RecordPojo
+            dataUsageDetails: RecordPojo?
         ) {
 
-            usageYear!!.text = dataUsageDetails!!.year
-            usageTotal!!.text = dataUsageDetails!!.data_volume
+            usageYear!!.text = dataUsageDetails!!.year.toString()
+            usageTotal!!.text = dataUsageDetails.data_volume.toString()
 
             imageViewLogo!!.isVisible = false
 
             imageViewLogo!!.setOnClickListener {
 
+            }
+
+            itemView.setOnClickListener {
+                Toast.makeText(itemView.context, "Quarter Name: ${dataUsageDetails.quarter}",Toast.LENGTH_LONG).show()
             }
         }
     }
