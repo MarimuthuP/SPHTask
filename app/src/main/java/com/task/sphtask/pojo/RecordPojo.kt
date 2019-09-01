@@ -14,8 +14,8 @@ data class RecordPojo (
 )
 
 data class TotalUsagePojo(
-    val totalVolume: String,
-    val year: String,
+    val totalVolume: BigDecimal,
+    val year: Int,
     val isDown: Boolean,
-    val usageDetails: RecordPojo
+    val usageDetails: List<RecordPojo>
 )

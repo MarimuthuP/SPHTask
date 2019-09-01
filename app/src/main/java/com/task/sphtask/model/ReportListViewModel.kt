@@ -8,12 +8,14 @@ import com.task.sphtask.network.RetrofitAPI
 import com.task.sphtask.network.WebUrls
 import com.task.sphtask.pojo.DataUsagePojo
 import com.task.sphtask.pojo.RecordPojo
+import com.task.sphtask.pojo.TotalUsagePojo
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.math.BigDecimal
 import java.util.concurrent.TimeUnit
 
 /**
@@ -22,6 +24,7 @@ import java.util.concurrent.TimeUnit
 class ReportListViewModel : ViewModel() {
     private var dataUsageResponse: MutableLiveData<DataUsagePojo>? = null
     private var dataUsageList: MutableLiveData<List<RecordPojo>>? = null
+    private var totalDataUsageList: MutableLiveData<List<TotalUsagePojo>>? = null
 
     fun getDataUsageDetails(): MutableLiveData<DataUsagePojo>? {
         if (dataUsageResponse == null) {
@@ -84,36 +87,87 @@ class ReportListViewModel : ViewModel() {
                 yearnQuarter.get(0).toInt(),
                 yearnQuarter.get(1),
                 false,
-                "Quarter"
+                yearnQuarter.get(1)
             )
             listRecord.add(recordPojo)
         }
+        calculateUsageByYearNew(listRecord)
         dataUsageList?.value = calculateUsageByYear(listRecord)
     }
 
 
-    private fun loadUsageTotal(recordList: List<DataUsagePojo.Result.Record>) {
-        /*val pattern = Pattern.compile(",")
-        val players = recordList
-            .map { line ->
-                val arr = pattern.split(line.quarter)
-                RecordPojo(
-                    line.volumeOfMobileData,
-                    arr[0].toInt(),
-                    arr[1],
-                    false,
-                    "Quarter"
-                )
-            }
-            .groupBy { it.year }
-            .values
+    private fun calculateUsageByYearNew(recordList: List<RecordPojo>) {
 
-        val list: List<RecordPojo> = listOf(players)
-        dataUsageList?.value = players*/
+        val listMain = ArrayList<TotalUsagePojo>()
+        //region isolate the list by year...
+        val aggregateNew = recordList
+            .groupBy { it.year }
+
+        val amountTotal = recordList
+            .map { it.data_volume }.fold(BigDecimal.ZERO, { total, next -> total + next })
+        //endregion
+
+        //region isolate the list with accumulated the usage by the year
+        val aggregate = recordList
+            .groupingBy(RecordPojo::year)
+            .aggregate { _, accumulator: RecordPojo?, element: RecordPojo, _ ->
+                accumulator?.let {
+                    it.copy(data_volume = it.data_volume + element.data_volume)
+                } ?: element
+            }
+        //endregion
+
+        aggregateNew.entries.forEach { (key, value) ->
+            println("LIST year: ${key} - value: ${value}")
+        }
+
+        aggregate.entries.forEach { (key, value) ->
+            println("ACCU year: ${key} - value: ${value}")
+        }
+
+        val listResult = aggregate.toList()
+        val listDetailResult = aggregateNew.toList()
+
+        for (i in 0 until listResult.size) {
+            val totalUsagePojo = TotalUsagePojo(
+                listResult.get(i).second.data_volume,
+                        listResult.get(i).second.year,
+                false,
+                listDetailResult.get(i).second
+            )
+            listMain.add(totalUsagePojo)
+        }
+
+        for (i in 0 until listMain.size){
+            println("==> ${listMain.get(i).year} - ${listMain.get(i).totalVolume} - ${listMain.get(i).isDown} - ${listMain.get(i).usageDetails}")
+        }
+
+        println("Only list details SIZE: " + aggregateNew.entries.size)
+        println("accumulated list SIZE: " + aggregate.entries.size)
+        println("totalUsagePojo list SIZE: " + listMain.size)
+        println("SIZE vol: " + amountTotal)
+
+        //return aggregateNew
     }
+
+    /*private fun checkDecreasedQuarter(yearRecordList: List<RecordPojo>): List<RecordPojo> {
+        val size: Int = yearRecordList.size
+
+        when(size){
+             1-> return yearRecordList
+             2-> {
+                 for (i in 0 until yearRecordList.size){
+                    if(yearRecordList[i].data_volume > yearRecordList[i+1].data_volume){
+                        yearRecordList[i].downQuarterName = yearRecordList[i]
+                    }
+                 }
+             }
+        }
+    }*/
 
     private fun calculateUsageByYear(recordList: List<RecordPojo>): List<RecordPojo> {
 
+        //region working flow
         val aggregate = recordList
             .groupingBy(RecordPojo::year)
             .aggregate { _, accumulator: RecordPojo?, element: RecordPojo, _ ->
@@ -123,7 +177,10 @@ class ReportListViewModel : ViewModel() {
             }
 
 
-        println("AGGREGATE: "+aggregate.values.toMutableList())
+        println("AGGREGATE: " + aggregate.values.toMutableList())
+        println("AGGREGATE SIZZE: " + aggregate.values.toMutableList().size)
+        //endregion
+
         return aggregate.values.toList()
     }
 }
