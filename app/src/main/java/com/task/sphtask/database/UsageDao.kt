@@ -15,9 +15,6 @@ interface UsageDao {
     @Query("select * from UsageDetails")
     fun getAllUsageData(): LiveData<List<UsageData>>
 
-    /*@Query("select * from UsageDetails LIMIT 1")
-    fun usageCount(): Single<Int>*/
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUsageData(list: List<UsageData>)
 }
