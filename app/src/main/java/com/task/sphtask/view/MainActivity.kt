@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         val buttonReport: Button = findViewById(R.id.btn_report)
+        setTitle(R.string.app_name)
         buttonReport.setOnClickListener {
             startActivity(Intent(this, ReportListActivity::class.java))
         }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content">
+
+
+    <TextView
+            android:text="@string/volume_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_desc"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            android:layout_marginStart="8dp"
+            style="@style/ContentTextViewStyle"/>
+
+    <TextView
+            android:text="@string/quarter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/ContentTextViewStyle"
+            android:id="@+id/textView_q1"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintTop_toBottomOf="@+id/textView_desc"
+            android:layout_marginTop="8dp"
+            android:padding="@dimen/size_5"/>
+
+    <TextView
+            android:text="@string/quarter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_q2"
+            style="@style/ContentTextViewStyle"
+            app:layout_constraintTop_toBottomOf="@+id/textView_q1"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            android:padding="@dimen/size_5"/>
+
+    <TextView
+            android:text="@string/quarter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_q3"
+            style="@style/ContentTextViewStyle"
+            app:layout_constraintTop_toBottomOf="@+id/textView_q2"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            android:padding="@dimen/size_5"/>
+
+    <TextView
+            android:text="@string/quarter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_q4"
+            style="@style/ContentTextViewStyle"
+            app:layout_constraintTop_toBottomOf="@+id/textView_q3"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            android:padding="@dimen/size_5"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="38dp"
+            android:id="@+id/guideline_left"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintGuide_end="38dp"
+            android:id="@+id/guideline_right"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

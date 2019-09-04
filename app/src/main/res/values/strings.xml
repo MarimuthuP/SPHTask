@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SPHTask</string>
+    <string name="app_name">SPH Task</string>
 
     <string name="title">Mobile Data Usage</string>
     <string name="report">Click here to see Report!</string>
@@ -7,4 +7,17 @@
     <string name="year">Year</string>
     <string name="number">2019</string>
     <string name="consumption">Total volume</string>
+
+    <string name="no_data">No data found</string>
+
+    <string name="ok_text">Ok</string>
+    <string name="volume_title">%1$s Usage Details</string>
+    <string name="no_internet_title">No Internet connection</string>
+    <string name="no_internet_data">Please connect your wifi or Mobile data to see the Mobile data usage Report.</string>
+
+    <string name="volume_desc">Below are the details that decreased quarter in this year.</string>
+    <string name="quarter">Q1 - 00000</string>
+
+    <string name="title_list">Data Usage List</string>
+    <string name="title_db_list">Usage List from DB</string>
 </resources>

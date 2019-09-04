@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="@dimen/size_10"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                    android:id="@+id/cl_header"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/iv_alert_img"
+                        android:layout_width="@dimen/size_25"
+                        android:background="@drawable/ic_error_outline"
+                        android:layout_height="@dimen/size_25"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/quarter"/>
+
+                <TextView
+                        android:id="@+id/tv_alert_title"
+                        style="@style/HeaderTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_12"
+                        android:text="@string/no_internet_title"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/size_10"
+                    android:layout_marginRight="@dimen/size_10"
+                    android:background="@color/gray_divider"
+                    android:visibility="visible"
+                    android:id="@+id/view"/>
+
+
+            <TextView
+                    android:id="@+id/tv_alert_content"
+                    style="@style/ContentTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_margin="@dimen/size_10"
+                    android:padding="@dimen/size_10"
+                    android:text="@string/no_internet_data"/>
+
+            <include
+                    android:id="@+id/include_volume_details"
+                    layout="@layout/include_quarter_details"
+                    android:layout_height="200dp"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/size_5"/>
+            <Button
+                    android:id="@+id/btn_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/ok_text"
+                    android:background="@color/colorPrimary"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/font_16"
+                    android:visibility="visible"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
