@@ -1,28 +1,12 @@
 package com.task.sphtask.model
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.task.sphtask.network.RetrofitAPI
-import com.task.sphtask.network.WebUrls
-import com.task.sphtask.pojo.DataUsagePojo
-import com.task.sphtask.pojo.RecordPojo
-import com.task.sphtask.pojo.TotalUsagePojo
-import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.math.BigDecimal
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by Marimuthu on 2019-08-29.
  */
 class ReportListViewModel : ViewModel() {
-    private var dataUsageResponse: MutableLiveData<DataUsagePojo>? = null
+    /*private var dataUsageResponse: MutableLiveData<DataUsagePojo>? = null
     private var dataUsageList: MutableLiveData<List<RecordPojo>>? = null
     private var totalDataUsageList: MutableLiveData<List<TotalUsagePojo>>? = null
 
@@ -150,7 +134,7 @@ class ReportListViewModel : ViewModel() {
         //return aggregateNew
     }
 
-    /*private fun checkDecreasedQuarter(yearRecordList: List<RecordPojo>): List<RecordPojo> {
+    *//*private fun checkDecreasedQuarter(yearRecordList: List<RecordPojo>): List<RecordPojo> {
         val size: Int = yearRecordList.size
 
         when(size){
@@ -163,7 +147,7 @@ class ReportListViewModel : ViewModel() {
                  }
              }
         }
-    }*/
+    }*//*
 
     private fun calculateUsageByYear(recordList: List<RecordPojo>): List<RecordPojo> {
 
@@ -182,5 +166,5 @@ class ReportListViewModel : ViewModel() {
         //endregion
 
         return aggregate.values.toList()
-    }
+    }*/
 }
